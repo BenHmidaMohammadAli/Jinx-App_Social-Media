@@ -1,0 +1,41 @@
+{% extends 'dashboardSponsor.html.twig' %}
+
+{% block title %}Achat index{% endblock %}
+
+{% block body %}
+    <h1>My Demands for gaming sell </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Details</th>
+                <th>Etat</th>
+                <th>Prix</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for achat in achats %}
+            <tr>
+                <td>{{ achat.id }}</td>
+                <td>{{ achat.date ? achat.date|date('Y-m-d') : '' }}</td>
+                <td>{{ achat.details }}</td>
+                <td>{{ achat.Etat }}</td>
+                <td>{{ achat.prix }}</td>
+                <td>
+                    <a href="{{ path('app_achat_show', {'id': achat.id}) }}">show</a>
+                    <a href="{{ path('app_achat_edit', {'id': achat.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_achat_new') }}">Create new</a>
+{% endblock %}

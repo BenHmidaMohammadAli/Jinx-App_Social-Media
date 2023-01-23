@@ -1,0 +1,84 @@
+{% extends 'dashboardAdmin.html.twig' %}
+
+{% block title %}Game{% endblock %}
+
+{% block body %}
+    <h1>Game</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ game.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ game.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ game.description }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ game.type }}</td>
+            </tr>
+            <tr>
+                <th>Genre</th>
+                <td>{{ game.Genre }}</td>
+            </tr>
+            <tr>
+                <th>Alert</th>
+                <td>{{ game.alert }}</td>
+            </tr>
+            <tr>
+                <th>DateDepot</th>
+                <td>{{ game.dateDepot ? game.dateDepot|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ game.photo }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3> List of Players </h3>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Pays</th>
+            <th>Ville</th>
+            <th>Gender</th>
+            <th>DateNaissance</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for part in game.Players %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.pays }}</td>
+                <td>{{ user.ville }}</td>
+                <td>{{ user.Gender }}</td>
+                <td>{{ user.dateNaissance ? user.dateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_game_index') }}">back to list</a>
+
+
+    {{ include('game/_delete_form.html.twig') }}
+
+{% endblock %}

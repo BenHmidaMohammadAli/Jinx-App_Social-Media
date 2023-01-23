@@ -1,0 +1,53 @@
+{% extends 'DashboardSponsor.html.twig' %}
+{% block title %} Dashborad | Profil {% endblock %}
+
+{% block body %}
+<section class="section profile">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                        <h2>Nom : </h2>
+                        <h2>{{ user.nom }} </h2>
+
+                        <h2>Prenom : </h2>
+                        <h2>{{ user.prenom }} </h2>
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body pt-3">
+                    <!-- Bordered Tabs -->
+                    <ul class="nav nav-tabs nav-tabs-bordered">
+                        Profil Details
+                    </ul>
+                    <div class="tab-content pt-2">
+                        <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>{{ user.email }}</td>
+                                </tr>
+                                <tr>
+                                    <th>DateNaissance</th>
+                                    <td>{{ user.DateNaissance ? user.DateNaissance|date('Y-m-d') : '' }}</td>
+                                </tr>
+
+
+                                </tbody>
+                            </table>
+
+                    </div>
+                        <a href="{{ path('app_user_editSposnorProfil', {'id': user.id}) }}">Edit</a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

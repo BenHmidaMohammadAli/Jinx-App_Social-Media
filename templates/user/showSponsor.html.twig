@@ -1,0 +1,72 @@
+{% extends 'dashboardSponsor.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <h1>{{ Role }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ user.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ user.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ user.pays }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ user.ville }}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>{{ user.Gender }}</td>
+            </tr>
+            <tr>
+                <th>Etude</th>
+                <td>{{ user.Etude }}</td>
+            </tr>
+            <tr>
+                <th>AboutMe</th>
+                <td>{{ user.AboutMe }}</td>
+            </tr>
+            <tr>
+                <th>MF</th>
+                <td>{{ user.MF }}</td>
+            </tr>
+            <tr>
+                <th>DateNaissance</th>
+                <td>{{ user.dateNaissance ? user.dateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {% if RoleID ==3 %}
+        <a href="{{ path('app_dev_index_sponsor', {'id':user.id}) }}">back to list</a>
+    {% endif %}
+
+    {% if RoleID ==4 %}
+        <a href="{{ path('app_dev_index_sponsor', {'id':user.id}) }}">back to list</a>
+    {% endif %}
+
+
+    {{ include('user/_delete_form.html.twig') }}
+
+{% endblock %}

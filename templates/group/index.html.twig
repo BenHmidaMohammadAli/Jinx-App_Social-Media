@@ -1,0 +1,39 @@
+{% extends 'dashboardAdmin.html.twig' %}
+
+{% block title %}Group index{% endblock %}
+
+{% block body %}
+    <h1>Groups </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>DateCreation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for group in groups %}
+            <tr>
+                <td>{{ group.id }}</td>
+                <td>{{ group.nom }}</td>
+                <td>{{ group.description }}</td>
+                <td>{{ group.type }}</td>
+                <td>{{ group.dateCreation ? group.dateCreation|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_group_show', {'id': group.id}) }}">show</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'dashboardAdmin.html.twig' %}
+
+{% block title %}Annonce index{% endblock %}
+
+{% block body %}
+    <h1>Annonces </h1>
+
+    {% for v in users %}
+    <hr style="width:100%;text-align:left;margin-left:0">
+    <h3>{{v.id }} : {{v.nom }} {{v.prenom }}</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Contenu</th>
+                <th>Date</th>
+                <th>Photo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for annonce in annonces %}
+            <hr>
+            {% if annonce.user == v %}
+            <tr>
+                <td>{{ annonce.id }}</td>
+                <td>{{ annonce.contenu }}</td>
+                <td>{{ annonce.date ? annonce.date|date('Y-m-d') : '' }}</td>
+                <td>{{ annonce.photo }}</td>
+                <td>
+                    <a href="{{ path('app_annonce_show', {'id': annonce.id}) }}">show</a>
+                </td>
+            </tr>
+            {% endif %}
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endfor %}
+
+{% endblock %}

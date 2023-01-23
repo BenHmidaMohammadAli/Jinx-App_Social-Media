@@ -1,0 +1,67 @@
+{% extends 'dashboardAdmin.html.twig' %}
+
+{% block title %}Event{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ event.id }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ event.description }}</td>
+            </tr>
+            <tr>
+                <th>Creator</th>
+                <td>{{ event.Creator.MF }} : {{ event.Creator.nom }} {{ event.Creator.nom }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ event.date ? event.date|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3> List of Participations </h3>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Pays</th>
+            <th>Ville</th>
+            <th>Gender</th>
+            <th>DateNaissance</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for part in event.Participations %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.pays }}</td>
+                <td>{{ user.ville }}</td>
+                <td>{{ user.Gender }}</td>
+                <td>{{ user.dateNaissance ? user.dateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <a href="{{ path('app_event_index') }}">back to list</a>
+
+    {{ include('event/_delete_form.html.twig') }}
+{% endblock %}

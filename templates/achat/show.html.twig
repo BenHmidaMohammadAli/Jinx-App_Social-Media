@@ -1,0 +1,38 @@
+{% extends 'dashboardSponsor.html.twig' %}
+
+{% block title %}Achat{% endblock %}
+
+{% block body %}
+    <h1>Achat</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ achat.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ achat.date ? achat.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Details</th>
+                <td>{{ achat.details }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ achat.Etat }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ achat.prix }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_achat_index') }}">back to list</a>
+
+    <a href="{{ path('app_achat_edit', {'id': achat.id}) }}">edit</a>
+
+    {{ include('achat/_delete_form.html.twig') }}
+{% endblock %}

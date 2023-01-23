@@ -1,0 +1,10 @@
+{% extends 'dashboardAdmin.html.twig' %}
+
+{% block title %}New Event{% endblock %}
+
+{% block body %}
+
+    {{ include('event/_form.html.twig') }}
+
+    <a href="{{ path('app_event_index') }}">back to list</a>
+{% endblock %}

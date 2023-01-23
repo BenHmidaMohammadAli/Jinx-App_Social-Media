@@ -1,0 +1,10 @@
+{% extends 'dashboardSponsor.html.twig' %}
+
+{% block title %}New Annonce{% endblock %}
+
+{% block body %}
+
+    {{ include('annonce/_form.html.twig') }}
+
+    <a href="{{ path('app_annonce_index_sponsor', {'id': user.id}) }}">back to list</a>
+{% endblock %}

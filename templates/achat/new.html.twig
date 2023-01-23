@@ -1,0 +1,10 @@
+{% extends 'dashboardSponsor.html.twig' %}
+
+{% block title %}New Achat{% endblock %}
+
+{% block body %}
+
+    {{ include('achat/_form.html.twig') }}
+
+    <a href="{{ path('app_achat_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'dashboardSponsor.html.twig' %}
+
+{% block title %}Game index{% endblock %}
+
+{% block body %}
+    <h1>Games </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Genre</th>
+                <th>Alert</th>
+                <th>DateDepot</th>
+                <th>Photo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for game in games %}
+            <tr>
+                <td>{{ game.id }}</td>
+                <td>{{ game.nom }}</td>
+                <td>{{ game.description }}</td>
+                <td>{{ game.type }}</td>
+                <td>{{ game.Genre }}</td>
+                <td>{{ game.alert }}</td>
+                <td>{{ game.dateDepot ? game.dateDepot|date('Y-m-d') : '' }}</td>
+                <td>{{ game.photo }}</td>
+                <td>
+                    <a href="{{ path('app_game_show_sponsor', {'id': game.id}) }}">show</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

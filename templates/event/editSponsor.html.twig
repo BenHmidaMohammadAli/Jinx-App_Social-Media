@@ -1,0 +1,12 @@
+{% extends 'dashboardSponsor.html.twig' %}
+
+{% block title %}Edit Event{% endblock %}
+
+{% block body %}
+
+    {{ include('event/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_event_index_sponsor', {'id':user.id}) }}">back to list</a>
+
+    {{ include('event/_delete_form.html.twig') }}
+{% endblock %}

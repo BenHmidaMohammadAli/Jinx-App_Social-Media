@@ -1,0 +1,11 @@
+{% extends 'dashboardSponsor.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+
+    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('ShowProfilSponsor') }}">back to list</a>
+
+{% endblock %}

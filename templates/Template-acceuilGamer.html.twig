@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset = "UTF-8">
+    <meta http-equiv="X-UA-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+    <title>  {% block title %} JINX Acceuil - Gamer{% endblock %}  </title>
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset ('css/style2.css')}}">
+    {% endblock %}
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-left "> </div>
+    <a href="{{ path('AcceuilGamer') }}" class="logo">
+        <img src="{{ asset ('img/logo3.png')}}" >
+    </a>
+    <div class="search-box">
+        <img src="{{ asset ('img/search.png')}}">
+        <input type="text" placeholder="search">
+    </div>
+    <div class="navbar-center ">
+        <ul>
+            <li> <a href="#" class="active-link"> <img src="{{ asset ('img/home.png')}}"> <span> Home</span></a></li>
+            <li> <a href="#"> <img src="{{ asset ('img/network.png')}}"> <span> Events </span></a></li>
+
+        </ul>
+    </div>
+    <div class="navbar-right ">
+        <div class="online">
+            <img src="{{ asset ('img/user-3.png')}}" alt="network.png" class="nav-profile-img" onclick="toggleMenu()">
+        </div>
+    </div>
+    <!------------------profile-drop-down-menu------------------------------>
+    <div class="profile-menu-wrap" id="profilemenu">
+        <div class="profile-menu">
+            <div class = "user-info">
+                <img src="{{ asset ('img/user-3.png')}}">
+                <div>
+                    <h3>{{ user.nom }} {{ user.prenom }}</h3>
+                    <a href="{{ path ("ShowMyProfil") }}">See your profile</a>
+                </div>
+            </div>
+            <hr>
+            <a href="#" class="profile-menu-link">
+                <img src="{{ asset ('img/feedback.png')}}">
+                <p> Give Feedback </p>
+                <span>></span>
+            </a>
+            <a href="#" class="profile-menu-link">
+                <img src="{{ asset ('/img/help.png')}}">
+                <p> Help & support  </p>
+                <span>></span>
+            </a>
+            <a href="#" class="profile-menu-link">
+                <img src="{{ asset ('img/setting.png')}}">
+                <p> Setting & privacy </p>
+                <span>></span>
+            </a>
+            <a href="#" class="profile-menu-link">
+                <img src="{{ asset ('img/display.png')}}">
+                <p> Display & Accessibility </p>
+                <span>></span>
+            </a>
+            <a href="#" class="profile-menu-link">
+                <a href="{{ path('app_logout') }}" >
+                    <img src="{{ asset ('img/logout.png')}}">
+                    <p> Logout</p>
+                    <span></span>
+                </a>
+            </a>
+        </div>
+    </div>
+
+
+</nav>
+<!---------------------navbar end ------------------------>
+
+<div class="container">
+    <!-----------------left side bar --------------------->
+    <div class="left-sidebar">
+        <div class="sidebar-profile-box">
+            <img src="{{ asset ('img/cover-pic.png')}}" width="100%">
+            <div class="sidebar-profile-info">
+                <img src="{{ asset ('img/user-3.png')}}">
+                <h1>{{ user.nom }} {{ user.prenom }} </h1>
+                <h3> data student at tek-up </h3>
+                <ul>
+                    <li> your profile views <span>52</span></li>
+                    <li> your post views <span>810</span></li>
+                    <li> your connections <span>205</span></li>
+                </ul>
+            </div>
+            <div class="sidebar-profile-link">
+                <a href="AboutMe"> <img src="{{ asset ('img/items.png')}}"> Learn More </a>
+                <a href="#"> <img src="{{ asset ('img/premium.png')}}"> Try premium</a>
+            </div>
+        </div>
+        <div class="sidebar-activity" >
+            <h3>RECENT </h3>
+            <a href="#"> <img src="{{ asset ('img/recent.png')}}">  groups league of legends </a>
+            <a href="#"> <img src="{{ asset ('img/recent.png')}}">  pro groups </a>
+            <a href="#"> <img src="{{ asset ('img/recent.png')}}">  Online training for the competition  </a>
+            <a href="#"> <img src="{{ asset ('img/recent.png')}}">  groups minecraft </a>
+            <a href="#"> <img src="{{ asset ('img/recent.png')}}">  cvalorant </a>
+            <a href="#"> <img src="{{ asset ('img/recent.png')}}')}}"> the master</a>
+            <h3>GROUPS</h3>
+            {% for group in groups %}
+                <a href="#"> <img src="{{ asset ('img/group.png')}}"> {{ group.nom}} </a>
+            {% endfor %}
+
+            <h3>HACHTAG</h3>
+            <a href="#"> <img src="{{ asset ('img/hashtag.png')}}">   TFT games saision 1 </a>
+            <a href="#"> <img src="{{ asset ('img/hashtag.png')}}">  newwebgames   </a>
+            <a href="#"> <img src="{{ asset ('img/hashtag.png')}}">  best games  </a>
+            <div class="Discover-more-link">
+                <a href="#"> DISCOVER MORE </a>
+            </div>
+        </div>
+    </div>
+
+    <!--------------------main-content ------------------->
+    <div class="main-content">
+        <div class=""create-post>
+            <div class="create-post-input">
+                <img src="{{ asset ('img/user-3.png')}}">
+                <textarea rows="2" placeholder="Write a post "></textarea>
+            </div>
+            <div class="create-post-links">
+                <li><img src="{{ asset ('img/photo.png')}}">{{ date }}</li>
+                <li><img src="{{ asset ('img/video.png')}}"></li>
+                <li><img src="{{ asset ('img/event.png')}}"></li>
+                <li>Post </li>
+            </div>
+        </div>
+        <div class="sort-by">
+            <hr>
+            <p> Sort by : <span>TOP <img src="{{ asset ('img/down-arrow.png')}}"></span></p>
+        </div>
+        <div class="post">
+            <div class="post-author">
+                <img src="{{ asset ('img/user-2.png')}}">
+                <div>
+                    <h1>abed rahman</h1>
+                    <small>gamer</small>
+                    <small>4 minute ago</small>
+                </div>
+            </div>
+            <p>i have achieved to next lever of Lol .what an
+                amazing game i adviced to any one who is a beginner</p>
+            <img src="{{ asset ('img/leagueoflegend.png')}}" width="100%">
+            <div class="post-stats">
+                <div>
+                    <img src="{{ asset ('img/thumbsup.png ')}}">
+                    <img src="{{ asset ('img/love.png')}} ">
+                    <img src="{{ asset ('img/clap.png')}} ">
+                    <span class=""liked-users>Dali and 44 others</span>
+                </div>
+                <div>
+                    <span>22 comments &middot; 40 shares</span>
+
+                </div>
+            </div>
+            <div class="post-activity">
+                <div>
+                    <img src="{{ asset ('img/user-3.png')}}" class="post-activity-user-icon">
+                    <img src="{{ asset ('img/down-arrow.png')}}" class="post-activity-user-icon">
+
+                </div>
+                <div class="post-activity-link">
+                    <img src="{{ asset ('img/like.png')}}">
+                    <span>Like</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="{{ asset ('img/comment.png')}}">
+                    <span>Comment</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="{{ asset ('img/share.png')}}">
+                    <span>Share</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="{{ asset ('img/send.png')}}">
+                    <span>Send</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="post">
+            <div class="post-author">
+                <img src="{{ asset ('img/user-1.png')}}">
+                <div>
+                    <h1>Bnejamin leo</h1>
+                    <small>founder and CEO at Dura Games | Angel investor</small>
+                    <small>2 hours ago</small>
+                </div>
+            </div>
+            <p>The success of every game depends on search engine optimization and
+                digital marketing strategy. If you are on first page of all major search engines
+                then you are ahead of your competitions</p>
+            <img src="{{ asset ('img/post-image-1.png')}}" width="100%">
+            <div class="post-stats">
+                <div>
+                    <img src="{{ asset ('img/thumbsup.png ')}}">
+
+                    <img src="{{ asset ('img/love.png ')}}">
+                    <img src="{{ asset ('img/clap.png')}})}}">
+                    <span class="" liked-users>Dali and 44 others</span>
+                </div>
+                <div>
+                    <span>22 comments &middot; 40 shares</span>
+
+                </div>
+            </div>
+            <div class="post-activity">
+                <div>
+                    <img src="{{ asset ('img/user-3.png')}}" class="post-activity-user-icon">
+                    <img src="{{ asset ('img/down-arrow.png')}}" class="post-activity-user-icon">
+
+                </div>
+                <div class="post-activity-link">
+                    <img src="{{ asset ('img/like.png')}}">
+                    <span>Like</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="{{ asset ('img/comment.png')}}">
+                    <span>Comment</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="{{ asset ('img/share.png')}}">
+                    <span>Share</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="{{ asset ('img/send.png')}}">
+                    <span>Send</span>
+                </div>
+            </div>
+        </div>
+        <div class="post">
+            <div class="post-author">
+                <img src="{{ asset ('img/user-2.png')}}">
+                <div>
+                    <h1>Clarence Gerge</h1>
+                    <small>Senior Player at LOL</small>
+                    <small>15 minute ago</small>
+                </div>
+            </div>
+            <p>Start romanticizing your life.
+                Believe that your morning commute is fun, that every up of coffee is the best cup you’ve ever had. That even the smallest things are exciting and new. This is when you start to truly live –
+                when you look forward to the small things and every day</p>
+            <img src="{{ asset ('img/dora.png')}}" width="100%">
+            <div class="post-stats">
+                <div>
+                    <img src="{{ asset ('img/thumbsup.png')}} ">
+                    <img src="{{ asset ('img/love.png')}} ">dora.png.png
+                    <img src="{{ asset ('img/clap.png')}} ">
+                    <span class=""liked-users>Dali and 44 others</span>
+                </div>
+                <div>
+                    <span>22 comments &middot; 40 shares</span>
+
+                </div>
+            </div>
+            <div class="post-activity">
+                <div>
+                    <img src="{{ asset ('img/post-image-2.png')}}" class="post-activity-user-icon">
+                    <img src="{{ asset ('img/down-arrow.png')}}" class="post-activity-user-icon">
+
+                </div>
+                <div class="post-activity-link">
+                    <img src="{{ asset ('img/like.png')}}">
+                    <span>Like</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="{{ asset ('img/comment.png')}}">
+                    <span>Comment</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="{{ asset ('img/share.png')}}">
+                    <span>Share</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="{{ asset ('img/send.png')}}">
+                    <span>Send</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="post">
+            <div class="post-author">
+                <img src="{{ asset ('img/user-3.png')}}">
+                <div>
+                    <h1>Torkhani oumayma</h1>
+                    <small>Sponsor</small>
+                    <small>8 minute ago</small>
+                </div>
+            </div>
+            <p>Beginnings are usually scary and endings are usually sad.
+                It’s everything in between that makes it all worth living.</p>
+            <img src="{{ asset ('img/post-image-3.png')}}" width="100%">
+            <div class="post-stats">
+                <div>
+                    <img src="{{ asset ('img/thumbsup.png')}} ">
+                    <img src="{{ asset ('img/love.png ')}}">
+                    <img src="{{ asset ('img/clap.png')}} ">
+                    <span class=""liked-users>Dali and 44 others</span>
+                </div>
+                <div>
+                    <span>22 comments &middot; 40 shares</span>
+
+                </div>
+            </div>
+            <div class="post-activity">
+                <div>
+                    <img src="{{ asset ('img/user-3.png')}}" class="post-activity-user-icon">
+                    <img src="{{ asset ('img/down-arrow.png')}}" class="post-activity-user-icon">
+
+                </div>
+                <div class="post-activity-link">
+                    <img src="{{ asset ('img/like.png')}}">
+                    <span>Like</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="{{ asset ('img/comment.png')}}">
+                    <span>Comment</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="{{ asset ('img/share.png')}}">
+                    <span>Share</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="{{ asset ('img/send.png')}}">
+                    <span>Send</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="post">
+            <div class="post-author">
+                <img src="{{ asset ('img/user-4.png')}}">
+                <div>
+                    <h1>Mohammed salah</h1>
+                    <small>gamer</small>
+                    <small>54 minute ago</small>
+                </div>
+            </div>
+            <p>What if instead of solving you’re whole life,
+                you just think about adding additional good things.
+                Let your pile of good grow</p>
+            <img src="asset ('img/post-image-4.png')}}" width="100%">
+            <div class="post-stats">
+                <div>
+                    <img src="{{ asset ('img/thumbsup.png ')}}">
+                    <img src="{{ asset ('img/love.png ')}}">
+                    <img src="{{ asset ('img/clap.png')}} ">
+                    <span class=""liked-users>Dali and 44 others</span>
+                </div>
+                <div>
+                    <span>22 comments &middot; 40 shares</span>
+
+                </div>
+            </div>
+            <div class="post-activity">
+                <div>
+                    <img src="{{ asset ('img/user-3.png" class="post-activity-user-icon')}}">
+                    <img src="{{ asset ('img/down-arrow.png')}}" class="post-activity-user-icon">
+
+                </div>
+                <div class="post-activity-link">
+                    <img src="{{ asset ('img/like.png')}}">
+                    <span>Like</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="{{ asset ('img/comment.png')}}">
+                    <span>Comment</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="{{ asset ('img/share.png')}}">
+                    <span>Share</span>
+                </div>
+                <div class="post-activity-link">
+                    <img src="{{ asset ('img/send.png')}}">
+                    <span>Send</span>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <!-------------right side bar ----------------------->
+    <div class="right-sidebar">
+        <div class="sidebar-news">
+            <img src="{{ asset ('img/more.png')}}" class="info-icon">
+            <h3> Trending News </h3>
+            <a href=" #">High demand for skilled manpower </a>
+            <span> 1d ago &middot; 10,934 reader </span>
+            <a href=" #">Careers growing horizontally too </a>
+            <span> 15h ago &middot; 1,34 reader </span>
+            <a href=" #">less work wisa for us , more for uk </a>
+            <span> 5h ago &middot; 3.434 reader </span>
+            <a href=" #">More hiring= higher confiance </a>
+            <span> 4d ago &middot; 20,434 reader </span>
+            <a href=" #">HRichest gamer in the world </a>
+            <span> 24h ago &middot; 15.558 reader </span>
+
+
+            <a href="#" class="read-more-link">READ MORE</a>
+        </div>
+
+        <div class ="sidebar-ad">
+            <small>AD</small>
+            <p>Master the lol games</p>
+            <div>
+                <img src="{{ asset ('img/user-3.png')}}">
+                <img src="{{ asset ('build/img/user-3.png')}}">
+            </div>
+            <b>Brand and demand in new games</b>
+            <a href="#" class="ad-link"> Learn More</a>
+        </div>
+
+        <div class="sidebar-useful-links">
+            <a href="#">About</a>
+            <a href="#">Accessibility </a>
+            <a href="#">help center </a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Advertising</a>
+            <a href="#">Get the App</a>
+            <a href="#">More</a>
+
+            <div class ="copyright-msg">
+                <img src="{{ asset ('img/more.png')}}">
+                <p> JINX APP ; 2022.All right reserved</p>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+{% block javascripts %}
+<script>
+    let profilemenu = document.getElementById("profilemenu");
+
+    function toggleMenu(){
+        profilemenu.classList.toggle("open-menu");
+    }
+</script>
+<script>
+    let sidebaractivity = document.getElementById("sidebaractivity");
+    let morelink = document.getElementById("showMorelink");
+
+    function toggleActivity(){
+        sidebaractivity.classList.toggle("open-activity")
+    }
+</script>
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+{% extends 'dashboardAdmin.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <h1>{{ Role }} </h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Pays</th>
+                <th>Ville</th>
+                <th>Gender</th>
+                <th>Etude</th>
+                <th>AboutMe</th>
+                <th>MF</th>
+                <th>DateNaissance</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.pays }}</td>
+                <td>{{ user.ville }}</td>
+                <td>{{ user.Gender }}</td>
+                <td>{{ user.Etude }}</td>
+                <td>{{ user.AboutMe }}</td>
+                <td>{{ user.MF }}</td>
+                <td>{{ user.dateNaissance ? user.dateNaissance|date('Y-m-d') : '' }}</td>
+                <td>
+                    {% if RoleID ==1 %}
+                    <a href="{{ path('app_admin_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+                    {% endif %}
+
+                    {% if RoleID ==2 %}
+                        <a href="{{ path('app_sponsor_show', {'id': user.id}) }}">show</a>
+                    {% endif %}
+
+                    {% if RoleID ==3 %}
+                        <a href="{{ path('app_dev_show', {'id': user.id}) }}">show</a>
+                    {% endif %}
+
+                    {% if RoleID ==4 %}
+                        <a href="{{ path('app_gamer_show', {'id': user.id}) }}">show</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if RoleID ==1 %}
+        <a href="{{ path('app_user_new') }}">Create new</a>
+    {% endif %}
+
+{% endblock %}

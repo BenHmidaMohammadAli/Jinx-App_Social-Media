@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset = "UTF-8">
+    <meta http-equiv="X-UA-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+    <title>  {% block title %} JINX Acceuil - Gamer{% endblock %}  </title>
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset ('css/style2.css')}}">
+        <link rel="stylesheet" href="{{ asset ('css/style.css')}}">
+    {% endblock %}
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-left "> </div>
+    <a href="{{ path('AcceuilGamer') }}" class="logo">
+        <img src="{{ asset ('img/logo3.png')}}" >
+    </a>
+    <div class="search-box">
+        <img src="{{ asset ('img/search.png')}}">
+        <input type="text" placeholder="search">
+    </div>
+    <div class="navbar-center ">
+        <ul>
+            <li> <a href="{{ path("AcceuilGamer") }}" class="active-link"> <img src="{{ asset ('img/home.png')}}"> <span> Home</span></a></li>
+            <li> <a href="#"> <img src="{{ asset ('img/network.png')}}"> <span> Events </span></a></li>
+
+        </ul>
+    </div>
+    <div class="navbar-right ">
+        <div class="online">
+            <img src="{{ asset ('img/user-3.png')}}" alt="network.png" class="nav-profile-img" onclick="toggleMenu()">
+        </div>
+    </div>
+    <!------------------profile-drop-down-menu------------------------------>
+    <div class="profile-menu-wrap" id="profilemenu">
+        <div class="profile-menu">
+            <div class = "user-info">
+                <img src="{{ asset ('img/user-3.png')}}">
+                <div>
+                    <h3>{{ user.nom }} {{ user.prenom }}</h3>
+                    <a href="#">See your profile</a>
+                </div>
+            </div>
+            <hr>
+            <a href="#" class="profile-menu-link">
+                <img src="{{ asset ('img/feedback.png')}}">
+                <p> Give Feedback </p>
+                <span>></span>
+            </a>
+            <a href="#" class="profile-menu-link">
+                <img src="{{ asset ('/img/help.png')}}">
+                <p> Help & support  </p>
+                <span>></span>
+            </a>
+            <a href="#" class="profile-menu-link">
+                <img src="{{ asset ('img/setting.png')}}">
+                <p> Setting & privacy </p>
+                <span>></span>
+            </a>
+            <a href="#" class="profile-menu-link">
+                <img src="{{ asset ('img/display.png')}}">
+                <p> Display & Accessibility </p>
+                <span>></span>
+            </a>
+            <a href="#" class="profile-menu-link">
+                <a href="{{ path('app_logout') }}" >
+                    <img src="{{ asset ('img/logout.png')}}">
+                    <p> Logout</p>
+                    <span></span>
+                </a>
+            </a>
+        </div>
+    </div>
+
+
+</nav>
+<!---------------------navbar end ------------------------>
+
+<div class="container">
+    <!-----------------left side bar --------------------->
+    <div class="left-sidebar">
+        <div class="sidebar-profile-box">
+            <img src="{{ asset ('img/cover-pic.png')}}" width="100%">
+            <div class="sidebar-profile-info">
+                <img src="{{ asset ('img/user-3.png')}}">
+                <h1>{{ user.nom }} {{ user.prenom }} </h1>
+                <h3> data student at tek-up </h3>
+                <ul>
+                    <li> your profile views <span>52</span></li>
+                    <li> your post views <span>810</span></li>
+                    <li> your connections <span>205</span></li>
+                </ul>
+            </div>
+            <div class="sidebar-profile-link">
+                <a href="AboutMe"> <img src="{{ asset ('img/items.png')}}"> Learn More </a>
+                <a href="#"> <img src="{{ asset ('img/premium.png')}}"> Try premium</a>
+            </div>
+        </div>
+        <div class="sidebar-activity" >
+            <h3>RECENT </h3>
+            <a href="#"> <img src="{{ asset ('img/recent.png')}}">  groups league of legends </a>
+            <a href="#"> <img src="{{ asset ('img/recent.png')}}">  pro groups </a>
+            <a href="#"> <img src="{{ asset ('img/recent.png')}}">  Online training for the competition  </a>
+            <a href="#"> <img src="{{ asset ('img/recent.png')}}">  groups minecraft </a>
+            <a href="#"> <img src="{{ asset ('img/recent.png')}}">  cvalorant </a>
+            <a href="#"> <img src="{{ asset ('img/recent.png')}}')}}"> the master</a>
+            <h3>GROUPS</h3>
+            {% for group in groups %}
+                <a href="#"> <img src="{{ asset ('img/group.png')}}"> {{ group.nom}} </a>
+            {% endfor %}
+
+            <h3>HACHTAG</h3>
+            <a href="#"> <img src="{{ asset ('img/hashtag.png')}}">   TFT games saision 1 </a>
+            <a href="#"> <img src="{{ asset ('img/hashtag.png')}}">  newwebgames   </a>
+            <a href="#"> <img src="{{ asset ('img/hashtag.png')}}">  best games  </a>
+            <div class="Discover-more-link">
+                <a href="#"> DISCOVER MORE </a>
+            </div>
+        </div>
+    </div>
+
+    <!--------------------main-content ------------------->
+    <div class="main-content">
+        <div class=""create-post>
+            <div class="create-post-input">
+                <img src="{{ asset ('img/user-3.png')}}">
+                <textarea rows="2" placeholder="Write a post "></textarea>
+            </div>
+            <div class="create-post-links">
+                <li><img src="{{ asset ('img/photo.png')}}">{{ date }}</li>
+                <li><img src="{{ asset ('img/video.png')}}"></li>
+                <li><img src="{{ asset ('img/event.png')}}"></li>
+                <li>Post </li>
+            </div>
+        </div>
+        <div class="sort-by">
+            <hr>
+            <p> Sort by : <span>TOP <img src="{{ asset ('img/down-arrow.png')}}"></span></p>
+        </div>
+
+        <div class="post">
+
+
+            <div id="page-wraper">
+                <!-- Sidebar Menu -->
+                <div class="responsive-nav">
+                    <i class="fa fa-bars" id="menu-toggle"></i>
+                    <div id="menu" class="menu">
+                        <i class="fa fa-times" id="menu-close"></i>
+                        <div class="container">
+                            <div class="image">
+                                <a href="#"><img src="assets/images/author-image.jpg" alt="" /></a>
+                            </div>
+                            <div class="author-content">
+                                <h4>Reflux Me</h4>
+                                <span>Sinior Gamer </span>
+                            </div>
+                            <nav class="main-nav" role="navigation">
+                                <ul class="main-menu">
+                                    <li><a href="#section1">About Me</a></li>
+                                    <li><a href="#section2">What I’m good at</a></li>
+                                    <li><a href="#section3">My Work</a></li>
+                                    <li><a href="#section4">Contact Me</a></li>
+                                </ul>
+                            </nav>
+                            <div class="social-network">
+                                <ul class="soial-icons">
+                                    <li>
+                                        <a href="https://fb.com/templatemo"
+                                        ><i class="fa fa-facebook"></i
+                                            ></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-dribbble"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-rss"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <section class="section about-me" data-section="section1">
+                    <div class="container">
+                        <div class="section-heading">
+                            <h2>About Me</h2>
+                            <div class="line-dec"></div>
+                            <span
+                            > Im  professional gamer plays video games full time and competes in tournaments .
+                        i been contacted before by sponsors or advertisers when they play,
+                        and i can be part of a team of players or alone .
+
+                    </span
+                    >
+                        </div>
+                        <div class="left-image-post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="left-image">
+                                        <img src="assets/images/image.jpg" alt="" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="right-text">
+                                        <h4>League of Legends</h4>
+                                        <p>
+                                            League of Legends est un jeu de stratégie en équipe dans lequel deux
+                                            équipes de cinq champions s'affrontent pour détruire la base adverse.
+                                            Faites votre choix parmi plus de 140 champions disponibles, partez au combat,
+                                            éliminez vos adversaires avec adresse et
+                                            abattez les tourelles ennemies pour décrocher la victoire.
+                                        <div class="white-button">
+                                            <a href="#">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right-image-post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="left-text">
+                                        <h4>dota</h4>
+                                        <p>
+                                            Dota 2 est un jeu vidéo de type arène de bataille en ligne multijoueur développé
+                                            et édité par Valve Corporation avec l'aide de certains des créateurs du jeu d'origine : Defense of the Ancients,
+                                            un mod de carte personnalisée pour le jeu de stratégie en temps réel Warcraft III:
+                                            Reign of Chaos et son extension Warcraft III: The Frozen Throne. Le jeu est sorti en juillet 2013 sur Microsoft Windows,
+                                            OS X et Linux mettant fin à une phase bêta commencée en 2011.
+                                            Il est disponible exclusivement sur la plateforme de jeu en ligne Steam.
+                                        </p>
+                                        <div class="white-button">
+                                            <a href="#">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="right-image">
+                                        <img src=" assets/images/image1.jpg" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section my-services" data-section="section2">
+                    <div class="container">
+                        <div class="section-heading">
+                            <h2>What I’m good at?</h2>
+                            <div class="line-dec"></div>
+                            <span
+                            >I had a conversation with my friend Will the other night. He said something along the lines of Dota 2 not actually being "fun,"
+                        that nobody really plays Dota to have fun.Maybe he was joking a little bit, but still, it's an interesting thought—looking back on my 93 hours with Dota 2, I wouldn't exactly describe it as fun. I mean, yes, winning can be fun, getting kills can be fun. But most of the time, I'm not winning. Most of the time,
+                        I feel like I'm repeatedly getting my ass handed to me in grueling no-win matches.e.</span
+                            >
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="service-item">
+                                    <div class="first-service-icon service-icon"></div>
+                                    <h4>Snipping</h4>
+                                    <p>
+                                        ’m currently a first season silver player and I was wondering what skills does one need to push for higher ranks.
+                                        When responding it doesn’t have to be generalized,
+                                        for instance if you have insight on what makes top laners or supports good, I’d like to hear it.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="service-item">
+                                    <div class="second-service-icon service-icon"></div>
+                                    <h4>Strategic game</h4>
+                                    <p>
+                                        Brainstorm For Ideas. Brainstorming is a common method used to come up with not just game ideas, but ideas as a whole. ...
+                                        Try to Find Something New In a Familiar Genre. ...
+                                        Combine Elements from Two Wildly Different Games. ...
+                                        Use the Real-World for Inspiration. ...
+                                        Don't Try. ...
+                                        Conclusion.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="service-item">
+                                    <div class="third-service-icon service-icon"></div>
+                                    <h4>Can Kill Easy </h4>
+                                    <p>
+                                        Integer suscipit condimentum aliquet. Nam quis risus metus.
+                                        Nullam faucibus quam eget arcu pretium tincidunt. Nam libero
+                                        dui.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="service-item">
+                                    <div class="fourth-service-icon service-icon"></div>
+                                    <h4>Admin Dashboard</h4>
+                                    <p>
+                                        Vivamus et dui a massa venenatis fringilla. Proin lacus massa,
+                                        eleifend sed fermentum in, dignissim vel metus. Nunc accumsan
+                                        leo nec felis porttitor.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section my-work" data-section="section3">
+                    <div class="container">
+                        <div class="section-heading">
+                            <h2>My Work</h2>
+                            <div class="line-dec"></div>
+                            <span> I play a lot of game in many categorie, I find myself confontable playing in action, a little bit of drame and a lot of violent but I'm open of every thing , Please suggest me </span>
+                        </div>
+                        <div class="row">
+                            <div class="isotope-wrapper">
+                                <form class="isotope-toolbar">
+                                    <label
+                                    ><input
+                                                type="radio"
+                                                data-type="*"
+                                                checked=""
+                                                name="isotope-filter"
+                                        />
+                                        <span>Action </span></label
+                                    >
+                                    <label
+                                    ><input
+                                                type="radio"
+                                                data-type="people"
+                                                name="isotope-filter"
+                                        />
+                                        <span>Romanse </span></label
+                                    >
+                                    <label
+                                    ><input
+                                                type="radio"
+                                                data-type="nature"
+                                                name="isotope-filter"
+                                        />
+                                        <span>Nature</span></label
+                                    >
+                                    <label
+                                    ><input
+                                                type="radio"
+                                                data-type="animals"
+                                                name="isotope-filter"
+                                        />
+                                        <span>Animals</span></label
+                                    >
+                                </form>
+                                <div class="isotope-box">
+                                    <div class="isotope-item" data-type="nature">
+                                        <figure class="snip1321">
+                                            <img
+                                                    src="assets/images/portfolio-01.jpg"
+                                                    alt="sq-sample26"
+                                            />
+                                            <figcaption>
+                                                <a
+                                                        href="assets/images/gamer.jpg"
+                                                        data-lightbox="image-1"
+                                                        data-title="Caption"
+                                                ><i class="fa fa-search"></i
+                                                    ></a>
+                                                <h4>First Play</h4>
+                                            </figcaption>
+                                        </figure>
+                                    </div>
+
+                                    <div class="isotope-item" data-type="people">
+                                        <figure class="snip1321">
+                                            <img
+                                                    src="assets/images/portfolio-02.jpg"
+                                                    alt="sq-sample26"
+                                            />
+                                            <figcaption>
+                                                <a
+                                                        href="assets/images/portfolio-02.jpg"
+                                                        data-lightbox="image-1"
+                                                        data-title="Caption"
+                                                ><i class="fa fa-search"></i
+                                                    ></a>
+                                                <h4>Second Play</h4>
+                                            </figcaption>
+                                        </figure>
+                                    </div>
+
+                                    <div class="isotope-item" data-type="animals">
+                                        <figure class="snip1321">
+                                            <img
+                                                    src="assets/images/portfolio-03.jpg"
+                                                    alt="sq-sample26"
+                                            />
+                                            <figcaption>
+                                                <a
+                                                        href="assets/images/portfolio-03.jpg"
+                                                        data-lightbox="image-1"
+                                                        data-title="Caption"
+                                                ><i class="fa fa-search"></i
+                                                    ></a>
+                                                <h4>Test Play</h4>
+                                            </figcaption>
+                                        </figure>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section contact-me" data-section="section4">
+                    <div class="container">
+                        <div class="section-heading">
+                            <h2>Contact Me</h2>
+                            <div class="line-dec"></div>
+                            <span>Fusce eget nibh nec justo interdum condimentum. Morbi justo ex,
+                              efficitur at ante ac, tincidunt maximus ligula. Lorem ipsum dolor
+                              sit amet, consectetur adipiscing elit.</span>
+                        </div>
+                        <div class="row">
+                            <div class="right-content">
+                                <div class="container">
+                                    <form id="contact" action="" method="post">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <fieldset>
+                                                    <input
+                                                            name="name"
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="name"
+                                                            placeholder="Your name..."
+                                                            required=""
+                                                    />
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <fieldset>
+                                                    <input
+                                                            name="email"
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="email"
+                                                            placeholder="Your email..."
+                                                            required=""
+                                                    />
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <fieldset>
+                                                    <input
+                                                            name="subject"
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="subject"
+                                                            placeholder="Subject..."
+                                                            required=""
+                                                    />
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <fieldset>
+                        <textarea
+                                name="message"
+                                rows="6"
+                                class="form-control"
+                                id="message"
+                                placeholder="Your message..."
+                                required=""
+                        ></textarea>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <fieldset>
+                                                    <button type="submit" id="form-submit" class="button">
+                                                        Send Message
+                                                    </button>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <!-------------right side bar ----------------------->
+    <div class="right-sidebar">
+        <div class="sidebar-news">
+            <img src="{{ asset ('img/more.png')}}" class="info-icon">
+            <h3> Trending News </h3>
+            <a href=" #">High demand for skilled manpower </a>
+            <span> 1d ago &middot; 10,934 reader </span>
+            <a href=" #">Careers growing horizontally too </a>
+            <span> 15h ago &middot; 1,34 reader </span>
+            <a href=" #">less work wisa for us , more for uk </a>
+            <span> 5h ago &middot; 3.434 reader </span>
+            <a href=" #">More hiring= higher confiance </a>
+            <span> 4d ago &middot; 20,434 reader </span>
+            <a href=" #">HRichest gamer in the world </a>
+            <span> 24h ago &middot; 15.558 reader </span>
+
+
+            <a href="#" class="read-more-link">READ MORE</a>
+        </div>
+
+        <div class ="sidebar-ad">
+            <small>AD</small>
+            <p>Master the lol games</p>
+            <div>
+                <img src="{{ asset ('img/user-3.png')}}">
+                <img src="{{ asset ('build/img/user-3.png')}}">
+            </div>
+            <b>Brand and demand in new games</b>
+            <a href="#" class="ad-link"> Learn More</a>
+        </div>
+
+        <div class="sidebar-useful-links">
+            <a href="#">About</a>
+            <a href="#">Accessibility </a>
+            <a href="#">help center </a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Advertising</a>
+            <a href="#">Get the App</a>
+            <a href="#">More</a>
+
+            <div class ="copyright-msg">
+                <img src="{{ asset ('img/more.png')}}">
+                <p> JINX APP ; 2022.All right reserved</p>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+{% block javascripts %}
+    <script>
+        let profilemenu = document.getElementById("profilemenu");
+
+        function toggleMenu(){
+            profilemenu.classList.toggle("open-menu");
+        }
+    </script>
+    <script>
+        let sidebaractivity = document.getElementById("sidebaractivity");
+        let morelink = document.getElementById("showMorelink");
+
+        function toggleActivity(){
+            sidebaractivity.classList.toggle("open-activity")
+        }
+    </script>
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+{% extends 'dashboardSponsor.html.twig' %}
+
+{% block title %}Annonce index{% endblock %}
+
+{% block body %}
+    <h1>Annonces </h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Contenu</th>
+                <th>Date</th>
+                <th>Photo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for annonce in annonces %}
+            <tr>
+                <td>{{ annonce.id }}</td>
+                <td>{{ annonce.contenu }}</td>
+                <td>{{ annonce.date ? annonce.date|date('Y-m-d') : '' }}</td>
+                <td>{{ annonce.photo }}</td>
+                <td>
+                    <a href="{{ path('app_annonce_edit_sponsor', {'id': annonce.id}) }}">edit</a>
+                    <a href="{{ path('app_annonce_show_sponsor', {'id': annonce.id}) }}">show</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('app_annonce_new_sponsor') }}">Create new</a>
+
+{% endblock %}

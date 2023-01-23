@@ -1,0 +1,10 @@
+{% extends 'dashboardAdmin.html.twig' %}
+
+{% block title %}New Game{% endblock %}
+
+{% block body %}
+
+    {{ include('game/_form.html.twig') }}
+
+    <a href="{{ path('app_game_index') }}">back to list</a>
+{% endblock %}

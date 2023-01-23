@@ -1,0 +1,10 @@
+{% extends 'dashboardAdmin.html.twig' %}
+
+{% block title %}New Group{% endblock %}
+
+{% block body %}
+
+    {{ include('group/_form.html.twig') }}
+
+    <a href="{{ path('app_group_index') }}">back to list</a>
+{% endblock %}

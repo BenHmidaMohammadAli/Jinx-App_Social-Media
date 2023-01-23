@@ -1,0 +1,10 @@
+{% extends 'dashboardAdmin.html.twig' %}
+
+{% block title %}New Role{% endblock %}
+
+{% block body %}
+
+    {{ include('role/_form.html.twig') }}
+
+    <a href="{{ path('app_role_index') }}">back to list</a>
+{% endblock %}
